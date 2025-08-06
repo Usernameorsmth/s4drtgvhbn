@@ -6,7 +6,7 @@ MOVEMENT_SPEED = 5
 FONT_SIZE = 72
 
 pygame.init()
-background_image = pygame.transform.scale(pygame.image.load("background.png"),
+background_image = pygame.transform.scale(pygame.image.load("background.jpg"),
                                           (SCREEN_WIDTH, SCREEN_HEIGHT))
 
 font = pygame.font.SysFont('Times New Roman', FONT_SIZE)
@@ -30,7 +30,7 @@ pygame.display.set_caption("Sprite Collision")
 
 all_sprites = pygame.sprite.Group()
 
-sprite1 = Sprite(pygame.color.Color('black'), 20, 30)
+sprite1 = Sprite(pygame.color.Color('yellow'), 20, 30)
 sprite1.rect.x, sprite1.rect.y = random.randint(
     0, SCREEN_WIDTH - sprite1.rect.width), random.randint(
     0, SCREEN_HEIGHT - sprite1.rect.height)
@@ -62,3 +62,12 @@ while running:
     
     screen.blit(background_image, (0, 0))
     all_sprites.draw(screen)
+    if won:
+     win_text = font.render("You win!", True, pygame.Color('black'))
+     screen.blit(win_text, ((SCREEN_WIDTH - win_text.get_width()) // 2,
+                           (SCREEN_HEIGHT - win_text.get_height()) // 2))
+
+    pygame.display.flip()
+    clock.tick(90)
+
+pygame.quit()
